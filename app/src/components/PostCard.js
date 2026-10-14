@@ -1,5 +1,6 @@
 import { View, Text, Image, StyleSheet } from 'react-native'
-import { Feather } from '@expo/vector-icons'
+import HeartIcon from '../../assets/icons/icon-heart.svg'
+import SendIcon from '../../assets/icons/icon-send-outline.svg'
 import { colors } from '../theme/colors'
 import { typography } from '../theme/typography'
 import { imageUrl } from '../api/client'
@@ -21,11 +22,11 @@ export default function PostCard({ post }) {
 
       <View style={styles.actions}>
         <View style={styles.action}>
-          <Feather name="heart" size={22} color={colors.textPrimary} />
+          <HeartIcon width={28} height={28} color={colors.textPrimary} />
           <Text style={styles.actionCount}>{post.likes}</Text>
         </View>
         <View style={styles.action}>
-          <Feather name="send" size={22} color={colors.textPrimary} />
+          <SendIcon width={28} height={28} color={colors.textPrimary} />
           <Text style={styles.actionCount}>{post.shares}</Text>
         </View>
       </View>

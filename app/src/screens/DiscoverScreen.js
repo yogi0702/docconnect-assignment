@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { View, Text, FlatList, StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Feather } from '@expo/vector-icons'
+import SearchIcon from '../../assets/icons/icon-search-outline.svg'
 import { colors } from '../theme/colors'
 import { typography } from '../theme/typography'
 import { getUsers, sendConnect, CURRENT_USER_ID } from '../api/client'
@@ -50,7 +50,7 @@ export default function DiscoverScreen() {
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <View style={styles.searchBar}>
-        <Feather name="search" size={20} color={colors.textSecondary} />
+        <SearchIcon width={24} height={24} color={colors.textSecondary} />
         <Text style={styles.searchPlaceholder}>Search profiles, organizations...</Text>
       </View>
 

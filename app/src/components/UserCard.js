@@ -1,5 +1,6 @@
 import { View, Text, Image, Pressable, ActivityIndicator, StyleSheet } from 'react-native'
 import { Feather } from '@expo/vector-icons'
+import AddUserIcon from '../../assets/icons/icon-add-user.svg'
 import { colors } from '../theme/colors'
 import { typography } from '../theme/typography'
 import { imageUrl } from '../api/client'
@@ -32,11 +33,7 @@ export default function UserCard({ user, onConnect, pending }) {
             <ActivityIndicator size="small" color={colors.white} />
           ) : (
             <>
-              <Feather
-                name={requested ? 'check' : 'user-plus'}
-                size={18}
-                color={requested ? colors.textSecondary : colors.white}
-              />
+              {!requested && <AddUserIcon width={22} height={22} color={colors.white} />}
               <Text style={[styles.buttonText, requested && styles.buttonTextRequested]}>
                 {requested ? 'Requested' : 'Connect'}
               </Text>

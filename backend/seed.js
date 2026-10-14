@@ -5,7 +5,29 @@ const User = require('./models/User')
 const Post = require('./models/Post')
 const Connection = require('./models/Connection')
 
+// Names and avatars mirror the Figma, which repeats the same placeholder
+// name across every card. Only the avatars differ between profiles.
 const users = [
+  {
+    // Logged-in user. image-3 is the avatar on the Home screen in the design.
+    name: 'Dr. Arjun Mehta',
+    occupation: 'Cardiology',
+    profileImage: '/assets/profile/image-3.png',
+    connectionsCount: 2,
+  },
+  {
+    // Author of every feed post, as shown in the design.
+    name: 'Docconnect',
+    occupation: 'Healthcare Technology',
+    profileImage: '/assets/profile/image-1.png',
+    connectionsCount: 2,
+  },
+  {
+    name: 'Dr. Arjun Mehta',
+    occupation: 'Cardiology',
+    profileImage: '/assets/profile/image-2.png',
+    connectionsCount: 2,
+  },
   {
     name: 'Dr. Arjun Mehta',
     occupation: 'Cardiology',
@@ -13,64 +35,40 @@ const users = [
     connectionsCount: 2,
   },
   {
-    name: 'Dr. Kavya Raman',
-    occupation: 'Pediatrics',
-    profileImage: '/assets/profile/image-1.png',
-    connectionsCount: 2,
-  },
-  {
-    name: 'Dr. Sanjay Iyer',
-    occupation: 'Orthopaedics',
-    profileImage: '/assets/profile/image-2.png',
-    connectionsCount: 2,
-  },
-  {
-    name: 'Dr. Meera Nair',
-    occupation: 'Dermatology',
-    profileImage: '/assets/profile/image-3.png',
-    connectionsCount: 2,
-  },
-  {
-    name: 'Dr. Rohit Verma',
-    occupation: 'Neurology',
+    name: 'Dr. Arjun Mehta',
+    occupation: 'Cardiology',
     profileImage: '/assets/profile/image-4.png',
     connectionsCount: 2,
   },
 ]
 
+const WELCOME =
+  "Welcome to Docconnect! We're building India's largest healthcare professional network. " +
+  'Connect with doctors, nurses, pharmacists, and medical students across the country. ' +
+  "Let's transform healthcare collaboration together. 🇮🇳"
+
+// Image order follows the design: the surgeon poster is the first post in the feed.
 const posts = [
+  { content: WELCOME, image: '/assets/posts/post-5.png', likes: 5, shares: 3 },
+  { content: WELCOME, image: '/assets/posts/post-1.png', likes: 5, shares: 3 },
   {
     content:
-      "Welcome to Docconnect! We're building India's largest healthcare professional network. Connect with doctors, nurses, pharmacists, and medical students across the country. Let's transform healthcare collaboration together.",
-    image: '/assets/posts/post-1.png',
-    likes: 5,
-    shares: 3,
-  },
-  {
-    content:
-      'Senior care is where clinical skill meets patience. Sharing a few notes from our home-visit programme this month - small changes in follow-up scheduling made a real difference to adherence.',
-    image: '/assets/posts/post-2.png',
-    likes: 5,
-    shares: 3,
-  },
-  {
-    content:
-      'Reminder for everyone preparing for post-graduate entrance exams: consistency beats intensity. Two focused hours a day for six months will take you further than a month of cramming.',
+      'Celebrating the people who hold our hospitals together. Share this with a colleague who deserves to hear it today.',
     image: '/assets/posts/post-3.png',
     likes: 8,
     shares: 2,
   },
   {
     content:
-      'Attended a workshop on early paediatric screening today. The biggest takeaway was how much earlier developmental delays can be caught with a structured checklist at routine visits.',
-    image: '/assets/posts/post-4.png',
+      'Wellness Week starts Tuesday. Sessions on burnout, sleep and mental health, open to every healthcare professional on Docconnect.',
+    image: '/assets/posts/post-2.png',
     likes: 12,
     shares: 4,
   },
   {
     content:
-      'Looking to connect with neurologists and physiotherapists working on post-stroke rehabilitation. We are putting together a shared protocol and would value input from people doing this daily.',
-    image: '/assets/posts/post-5.png',
+      'New on Docconnect: find and connect with specialists by field and location. Tell us which features you want next.',
+    image: '/assets/posts/post-4.png',
     likes: 6,
     shares: 1,
   },
@@ -87,12 +85,14 @@ async function seed() {
 
   const createdUsers = await User.insertMany(users)
 
-  // One post per user, newest first so the feed order is predictable.
+  // All feed posts come from the Docconnect account, matching the design.
+  const docconnect = createdUsers.find((user) => user.name === 'Docconnect')
+
   const now = Date.now()
   await Post.insertMany(
     posts.map((post, i) => ({
       ...post,
-      author: createdUsers[i]._id,
+      author: docconnect._id,
       timestamp: new Date(now - i * 60 * 60 * 1000),
     }))
   )

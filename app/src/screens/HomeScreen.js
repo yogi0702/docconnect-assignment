@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { View, Text, FlatList, Pressable, StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { Feather } from '@expo/vector-icons'
+import PlusIcon from '../../assets/icons/icon-plus.svg'
 import { colors } from '../theme/colors'
 import { typography } from '../theme/typography'
 import { getPosts, getUser, CURRENT_USER_ID } from '../api/client'
@@ -42,7 +42,7 @@ export default function HomeScreen() {
           Doc<Text style={styles.logoAccent}>Connect</Text>
         </Text>
         <Pressable style={styles.addButton}>
-          <Feather name="plus" size={22} color={colors.white} />
+          <PlusIcon width={24} height={24} color={colors.white} />
         </Pressable>
       </View>
 
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   logo: {
-    ...typography.h2,
+    ...typography.h1,
     color: colors.textPrimary,
   },
   logoAccent: {

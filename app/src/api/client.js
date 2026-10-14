@@ -1,8 +1,10 @@
-// Change this to your machine's LAN IP - a phone running Expo Go cannot reach localhost.
-const BASE_URL = 'http://192.168.29.202:5000'
+// Works with `adb reverse tcp:5000 tcp:5000`, which tunnels the device's
+// localhost to this machine. Without adb, use your machine's LAN IP instead,
+// for example http://192.168.1.15:5000 - a phone cannot reach a bare localhost.
+const BASE_URL = 'http://localhost:5000'
 
 // No auth in this assignment, so the first seeded user is treated as the logged-in user.
-export const CURRENT_USER_ID = '6acf1879aaf3a5e13c72ebe7'
+export const CURRENT_USER_ID = '6acf78d56b028d11e9ab5896'
 
 async function request(path, options) {
   const response = await fetch(`${BASE_URL}${path}`, options)

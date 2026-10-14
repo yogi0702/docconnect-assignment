@@ -4,7 +4,6 @@ import { StatusBar } from 'expo-status-bar'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { Feather } from '@expo/vector-icons'
 import * as SplashScreen from 'expo-splash-screen'
 import {
   useFonts,
@@ -16,10 +15,17 @@ import {
 import { colors } from './src/theme/colors'
 import HomeScreen from './src/screens/HomeScreen'
 import DiscoverScreen from './src/screens/DiscoverScreen'
+import HomeOutline from './assets/icons/icon-home-outline.svg'
+import HomeFilled from './assets/icons/icon-home-filled.svg'
+import SearchOutline from './assets/icons/icon-search-outline.svg'
+import SearchFilled from './assets/icons/icon-search-filled.svg'
+import SendOutline from './assets/icons/icon-send-outline.svg'
 
 SplashScreen.preventAutoHideAsync()
 
 const Tab = createBottomTabNavigator()
+
+const EmptyScreen = () => null
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -57,14 +63,30 @@ export default function App() {
               name="Home"
               component={HomeScreen}
               options={{
-                tabBarIcon: ({ color }) => <Feather name="home" size={24} color={color} />,
+                tabBarIcon: ({ color, focused }) => {
+                  const Icon = focused ? HomeFilled : HomeOutline
+                  return <Icon width={28} height={28} color={color} />
+                },
               }}
             />
             <Tab.Screen
               name="Discover"
               component={DiscoverScreen}
               options={{
-                tabBarIcon: ({ color }) => <Feather name="search" size={24} color={color} />,
+                tabBarIcon: ({ color, focused }) => {
+                  const Icon = focused ? SearchFilled : SearchOutline
+                  return <Icon width={28} height={28} color={color} />
+                },
+              }}
+            />
+            {/* Chat is in the design's tab bar but out of scope, so the icon is
+                shown to match the layout and tapping it does nothing. */}
+            <Tab.Screen
+              name="Chat"
+              component={EmptyScreen}
+              listeners={{ tabPress: (e) => e.preventDefault() }}
+              options={{
+                tabBarIcon: ({ color }) => <SendOutline width={28} height={28} color={color} />,
               }}
             />
           </Tab.Navigator>
