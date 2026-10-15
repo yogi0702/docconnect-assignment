@@ -1,6 +1,7 @@
 import { View, Text, Image, Pressable, ActivityIndicator, StyleSheet } from 'react-native'
-import { Feather } from '@expo/vector-icons'
+import ConnectsIcon from '../../assets/icons/icon-connects.svg'
 import AddUserIcon from '../../assets/icons/icon-add-user.svg'
+import SendIcon from '../../assets/icons/icon-send-outline.svg'
 import { colors } from '../theme/colors'
 import { typography } from '../theme/typography'
 import { imageUrl } from '../api/client'
@@ -11,7 +12,7 @@ export default function UserCard({ user, onConnect, pending }) {
   return (
     <View style={styles.card}>
       <View style={styles.connectsStrip}>
-        <Feather name="link-2" size={14} color={colors.primaryDark} />
+        <ConnectsIcon width={24} height={24} color={colors.primaryDark} />
         <Text style={styles.connectsText}>{user.connectionsCount} Connects</Text>
       </View>
 
@@ -30,12 +31,16 @@ export default function UserCard({ user, onConnect, pending }) {
           disabled={requested || pending}
         >
           {pending ? (
-            <ActivityIndicator size="small" color={colors.white} />
+            <ActivityIndicator size="small" color={requested ? colors.textSecondary : colors.white} />
           ) : (
             <>
-              {!requested && <AddUserIcon width={22} height={22} color={colors.white} />}
+              {requested ? (
+                <SendIcon width={24} height={24} color={colors.textSecondary} />
+              ) : (
+                <AddUserIcon width={15} height={14} color={colors.white} />
+              )}
               <Text style={[styles.buttonText, requested && styles.buttonTextRequested]}>
-                {requested ? 'Requested' : 'Connect'}
+                {requested ? 'Message' : 'Connect'}
               </Text>
             </>
           )}
@@ -51,15 +56,15 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderRadius: 14,
     overflow: 'hidden',
-    marginBottom: 14,
+    marginBottom: 16,
   },
   connectsStrip: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 6,
+    gap: 2,
     backgroundColor: colors.primaryLight,
-    paddingVertical: 10,
+    paddingVertical: 4,
   },
   connectsText: {
     ...typography.body2,
@@ -95,8 +100,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 8,
     alignSelf: 'stretch',
-    height: 46,
-    borderRadius: 10,
+    height: 32,
+    borderRadius: 8,
+    paddingHorizontal: 8,
     backgroundColor: colors.primary,
   },
   buttonRequested: {
@@ -107,6 +113,7 @@ const styles = StyleSheet.create({
   buttonText: {
     ...typography.button,
     color: colors.white,
+    lineHeight: 16,
   },
   buttonTextRequested: {
     color: colors.textSecondary,

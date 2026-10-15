@@ -1,5 +1,5 @@
 import { View, Text, Image, StyleSheet } from 'react-native'
-import { Feather } from '@expo/vector-icons'
+import ConnectsIcon from '../../assets/icons/icon-connects.svg'
 import { colors } from '../theme/colors'
 import { typography } from '../theme/typography'
 import { imageUrl } from '../api/client'
@@ -12,7 +12,7 @@ export default function ProfileHeader({ user }) {
       </View>
 
       <View style={styles.connectsPill}>
-        <Feather name="link-2" size={14} color={colors.primaryDark} />
+        <ConnectsIcon width={24} height={24} color={colors.primaryDark} />
         <Text style={styles.connectsText}>{user.connectionsCount} Connects</Text>
       </View>
 
@@ -46,11 +46,13 @@ const styles = StyleSheet.create({
   connectsPill: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
+    gap: 2,
     backgroundColor: colors.primaryLight,
-    borderRadius: 20,
-    paddingHorizontal: 14,
-    paddingVertical: 6,
+    borderRadius: 100,
+    borderWidth: 1,
+    borderColor: colors.primaryDarkFaint,
+    paddingHorizontal: 12,
+    paddingVertical: 4,
     marginTop: 16,
   },
   connectsText: {
