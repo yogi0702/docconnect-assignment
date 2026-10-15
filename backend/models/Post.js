@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const postSchema = new mongoose.Schema({
   content: { type: String, required: true, trim: true },
   author: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  image: { type: String },
+  // A post can carry several images, shown as a carousel in the feed.
+  images: { type: [String], default: [] },
   likes: { type: Number, default: 0 },
   shares: { type: Number, default: 0 },
   timestamp: { type: Date, default: Date.now },

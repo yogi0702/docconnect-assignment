@@ -4,7 +4,7 @@
 const BASE_URL = 'http://localhost:5000'
 
 // No auth in this assignment, so the first seeded user is treated as the logged-in user.
-export const CURRENT_USER_ID = '6acf78d56b028d11e9ab5896'
+export const CURRENT_USER_ID = '6ad06cff0354652bd86637c3'
 
 async function request(path, options) {
   const response = await fetch(`${BASE_URL}${path}`, options)

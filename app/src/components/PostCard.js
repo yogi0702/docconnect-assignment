@@ -1,6 +1,7 @@
 import { View, Text, Image, StyleSheet } from 'react-native'
 import HeartIcon from '../../assets/icons/icon-heart.svg'
 import SendIcon from '../../assets/icons/icon-send-outline.svg'
+import PostImages from './PostImages'
 import { colors } from '../theme/colors'
 import { typography } from '../theme/typography'
 import { imageUrl } from '../api/client'
@@ -18,7 +19,7 @@ export default function PostCard({ post }) {
 
       <Text style={styles.content}>{post.content}</Text>
 
-      {post.image && <Image source={{ uri: imageUrl(post.image) }} style={styles.image} />}
+      <PostImages images={post.images} />
 
       <View style={styles.actions}>
         <View style={styles.action}>
@@ -53,8 +54,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   authorName: {
-    ...typography.h3,
+    ...typography.body1,
     color: colors.textPrimary,
+    lineHeight: 16,
   },
   authorRole: {
     ...typography.body2,
@@ -67,12 +69,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 12,
     paddingBottom: 14,
-  },
-  image: {
-    width: '100%',
-    aspectRatio: 3 / 4,
-    resizeMode: 'cover',
-    backgroundColor: colors.background,
   },
   actions: {
     flexDirection: 'row',

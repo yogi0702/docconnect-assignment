@@ -49,26 +49,32 @@ const WELCOME =
 
 // Image order follows the design: the surgeon poster is the first post in the feed.
 const posts = [
-  { content: WELCOME, image: '/assets/posts/post-5.png', likes: 5, shares: 3 },
-  { content: WELCOME, image: '/assets/posts/post-1.png', likes: 5, shares: 3 },
+  { content: WELCOME, images: ['/assets/posts/post-5.png'], likes: 5, shares: 3 },
+  {
+    // The design shows this post as a carousel, badged 1/2.
+    content: WELCOME,
+    images: ['/assets/posts/post-1.png', '/assets/posts/post-4.png'],
+    likes: 5,
+    shares: 3,
+  },
   {
     content:
       'Celebrating the people who hold our hospitals together. Share this with a colleague who deserves to hear it today.',
-    image: '/assets/posts/post-3.png',
+    images: ['/assets/posts/post-3.png'],
     likes: 8,
     shares: 2,
   },
   {
     content:
       'Wellness Week starts Tuesday. Sessions on burnout, sleep and mental health, open to every healthcare professional on Docconnect.',
-    image: '/assets/posts/post-2.png',
+    images: ['/assets/posts/post-2.png'],
     likes: 12,
     shares: 4,
   },
   {
     content:
       'New on Docconnect: find and connect with specialists by field and location. Tell us which features you want next.',
-    image: '/assets/posts/post-4.png',
+    images: ['/assets/posts/post-5.png', '/assets/posts/post-3.png'],
     likes: 6,
     shares: 1,
   },
