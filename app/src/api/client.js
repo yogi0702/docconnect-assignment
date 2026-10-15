@@ -1,7 +1,5 @@
-// needs `adb reverse tcp:5000 tcp:5000`, otherwise use the machine's LAN IP
 const BASE_URL = 'http://localhost:5000'
 
-// no login, so the first seeded user is the logged-in user
 export const CURRENT_USER_ID = '6ad06cff0354652bd86637c3'
 
 async function request(path, options) {
@@ -14,7 +12,6 @@ async function request(path, options) {
   return response.json()
 }
 
-// paths are stored relative so the db isn't tied to one host
 export function imageUrl(path) {
   return path ? `${BASE_URL}${path}` : null
 }

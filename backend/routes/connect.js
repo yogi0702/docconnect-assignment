@@ -19,7 +19,6 @@ router.post('/', async (req, res, next) => {
     const connection = await Connection.create({ from, to })
     res.status(201).json(connection)
   } catch (err) {
-    // 11000 = duplicate key, so the request already exists - not an error
     if (err.code === 11000) {
       return res.status(200).json({ message: 'Already requested' })
     }

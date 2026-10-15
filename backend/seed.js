@@ -5,17 +5,14 @@ const User = require('./models/User')
 const Post = require('./models/Post')
 const Connection = require('./models/Connection')
 
-// names mirror the figma, which repeats the same placeholder name on every card
 const users = [
   {
-    // logged-in user - image-3 is the avatar shown on Home
     name: 'Dr. Arjun Mehta',
     occupation: 'Cardiology',
     profileImage: '/assets/profile/image-3.png',
     connectionsCount: 2,
   },
   {
-    // authors every feed post, as in the design
     name: 'Docconnect',
     occupation: 'Healthcare Technology',
     profileImage: '/assets/profile/image-1.png',
@@ -46,11 +43,9 @@ const WELCOME =
   'Connect with doctors, nurses, pharmacists, and medical students across the country. ' +
   "Let's transform healthcare collaboration together. 🇮🇳"
 
-// image order follows the design - surgeon poster first
 const posts = [
   { content: WELCOME, images: ['/assets/posts/post-5.png'], likes: 5, shares: 3 },
   {
-    // design shows this one as a 1/2 carousel
     content: WELCOME,
     images: ['/assets/posts/post-1.png', '/assets/posts/post-4.png'],
     likes: 5,
@@ -90,7 +85,6 @@ async function seed() {
 
   const createdUsers = await User.insertMany(users)
 
-  // all posts come from the Docconnect account
   const docconnect = createdUsers.find((user) => user.name === 'Docconnect')
 
   const now = Date.now()

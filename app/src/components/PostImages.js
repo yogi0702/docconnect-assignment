@@ -5,7 +5,6 @@ import { colors } from '../theme/colors'
 import { typography } from '../theme/typography'
 import { imageUrl } from '../api/client'
 
-// single image renders plain, multiple become a paging carousel
 export default function PostImages({ images }) {
   const { width } = useWindowDimensions()
   const [index, setIndex] = useState(0)
