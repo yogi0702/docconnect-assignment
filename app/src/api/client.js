@@ -1,9 +1,7 @@
-// Works with `adb reverse tcp:5000 tcp:5000`, which tunnels the device's
-// localhost to this machine. Without adb, use your machine's LAN IP instead,
-// for example http://192.168.1.15:5000 - a phone cannot reach a bare localhost.
+// needs `adb reverse tcp:5000 tcp:5000`, otherwise use the machine's LAN IP
 const BASE_URL = 'http://localhost:5000'
 
-// No auth in this assignment, so the first seeded user is treated as the logged-in user.
+// no login, so the first seeded user is the logged-in user
 export const CURRENT_USER_ID = '6ad06cff0354652bd86637c3'
 
 async function request(path, options) {
@@ -16,7 +14,7 @@ async function request(path, options) {
   return response.json()
 }
 
-// The API stores relative paths so the data is not tied to one host.
+// paths are stored relative so the db isn't tied to one host
 export function imageUrl(path) {
   return path ? `${BASE_URL}${path}` : null
 }

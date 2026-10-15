@@ -6,7 +6,7 @@ const connectionSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 })
 
-// One request per direction. Lets the DB reject duplicates instead of trusting the client.
+// one request per direction - lets the db reject duplicates
 connectionSchema.index({ from: 1, to: 1 }, { unique: true })
 
 module.exports = mongoose.model('Connection', connectionSchema)

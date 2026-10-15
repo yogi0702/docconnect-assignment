@@ -5,8 +5,7 @@ import { colors } from '../theme/colors'
 import { typography } from '../theme/typography'
 import { imageUrl } from '../api/client'
 
-// One image renders plain. Several render as a paging carousel with a 1/N
-// badge and a next arrow, as the design shows on the second post.
+// single image renders plain, multiple become a paging carousel
 export default function PostImages({ images }) {
   const { width } = useWindowDimensions()
   const [index, setIndex] = useState(0)
