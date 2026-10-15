@@ -1,9 +1,9 @@
 import { useEffect, useState, useCallback } from 'react'
-import { View, Text, FlatList, Pressable, StyleSheet } from 'react-native'
+import { View, FlatList, Pressable, StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import PlusIcon from '../../assets/icons/icon-plus.svg'
+import Logo from '../../assets/icons/logo-docconnect.svg'
 import { colors } from '../theme/colors'
-import { typography } from '../theme/typography'
 import { getPosts, getUser, CURRENT_USER_ID } from '../api/client'
 import ProfileHeader from '../components/ProfileHeader'
 import PostCard from '../components/PostCard'
@@ -38,9 +38,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <View style={styles.header}>
-        <Text style={styles.logo}>
-          Doc<Text style={styles.logoAccent}>Connect</Text>
-        </Text>
+        <Logo width={152} height={17} />
         <Pressable style={styles.addButton}>
           <PlusIcon width={24} height={24} color={colors.white} />
         </Pressable>
@@ -76,13 +74,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
     backgroundColor: colors.white,
-  },
-  logo: {
-    ...typography.h1,
-    color: colors.textPrimary,
-  },
-  logoAccent: {
-    color: colors.primary,
   },
   addButton: {
     width: 42,
