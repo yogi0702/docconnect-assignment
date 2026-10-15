@@ -49,12 +49,14 @@ export default function DiscoverScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
-      <View style={styles.searchBar}>
-        <SearchIcon width={24} height={24} color={colors.textSecondary} />
-        <Text style={styles.searchPlaceholder}>Search profiles, organizations...</Text>
-      </View>
+      <View style={styles.topBar}>
+        <View style={styles.searchBar}>
+          <SearchIcon width={24} height={24} color={colors.textSecondary} />
+          <Text style={styles.searchPlaceholder}>Search profiles, organizations...</Text>
+        </View>
 
-      <Text style={styles.sectionLabel}>People you may know</Text>
+        <Text style={styles.sectionLabel}>People you may know</Text>
+      </View>
 
       {loading && <Loading />}
 
@@ -83,6 +85,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
+  topBar: {
+    paddingBottom: 12,
+    borderBottomWidth: 3,
+    borderBottomColor: colors.border,
+    backgroundColor: colors.white,
+  },
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -103,15 +111,15 @@ const styles = StyleSheet.create({
     color: colors.textSecondary,
     paddingHorizontal: 16,
     paddingTop: 16,
-    paddingBottom: 14,
   },
   list: {
     backgroundColor: colors.background,
   },
   listContent: {
-    padding: 14,
+    paddingHorizontal: 20,
+    paddingVertical: 16,
   },
   row: {
-    gap: 14,
+    gap: 16,
   },
 })
