@@ -79,8 +79,6 @@ export default function App() {
                 },
               }}
             />
-            {/* Chat is in the design's tab bar but out of scope, so the icon is
-                shown to match the layout and tapping it does nothing. */}
             <Tab.Screen
               name="Chat"
               component={EmptyScreen}
