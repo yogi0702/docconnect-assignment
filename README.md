@@ -39,7 +39,7 @@ safe to run repeatedly. It prints the id of the first user, which is treated as
 the logged-in user:
 
 ```
-Logged-in user id: 6acf78d56b028d11e9ab5896
+Logged-in user id: 6ad06cff0354652bd86637c3
 ```
 
 ### Endpoints
@@ -70,7 +70,7 @@ Open the project in Expo Go.
 
 ```js
 const BASE_URL = 'http://localhost:5000'
-export const CURRENT_USER_ID = '6acf78d56b028d11e9ab5896'
+export const CURRENT_USER_ID = '6ad06cff0354652bd86637c3'
 ```
 
 There are two ways to let the device reach the backend. Pick either.
@@ -149,8 +149,10 @@ state the caller wanted already holds.
 - **Bottom navigation** shows all three icons from the design, but only Home and
   Discover navigate. Chat is excluded by the brief, so its icon is rendered to
   match the layout and tapping it does nothing.
-- **One image per post.** The design shows a carousel on one post; carousels were
-  treated as an extra feature.
+- **Posts carry an array of images.** Where a post has more than one, the feed
+  shows a paged carousel with a 1/N badge and a next arrow, matching the second
+  post in the design. The brief asks for five posts; the design frame draws two
+  of them, so the seed keeps five and gives two of them a second image.
 - **The Requested button style** is not specified in the design, so it uses the
   outlined treatment from the design's secondary button.
 - **Discover excludes the logged-in user.**
